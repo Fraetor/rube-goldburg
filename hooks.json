@@ -1,0 +1,13 @@
+[
+  {
+    "id": "rube-goldburg",
+    "execute-command": "/home/ubuntu/script.sh",
+    "command-working-directory": "/home/ubuntu/",
+    "incoming-payload-content-type": "application/json",
+    "pass-arguments-to-command": [
+      {
+        "source": "entire-payload"
+      }
+    ]
+  }
+]
