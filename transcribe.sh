@@ -21,6 +21,5 @@ rm job.json
 wget -O transcription.json "$TRANSCRIPT_URL"
 MESSAGE=$(cat transcription.json | python3 -c 'import sys, json; print(json.load(sys.stdin)["results"]["transcripts"][0]["transcript"])')
 rm transcription.json
-echo $MESSAGE
-echo "Sending $MESSAGE ..."
+echo "Sending $MESSAGE ..." >> ~/webhook.log
 return.sh $MESSAGE
