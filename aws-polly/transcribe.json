@@ -1,0 +1,8 @@
+{
+    "TranscriptionJobName": "supersecretmessage", 
+    "LanguageCode": "en-GB", 
+    "MediaFormat": "mp3", 
+    "Media": {
+        "MediaFileUri": "https://rube-goldburg-message.s3.eu-west-2.amazonaws.com/message.mp3"
+    }
+}

@@ -6,6 +6,7 @@ aws polly synthesize-speech \
     --voice-id Ivy \
     --text "$1" \
     message.mp3
+#aws s3 cp message.mp3 s3://rube-goldburg-message/
 cp message.mp3 ~/message.mp3
 rm message.mp3
 echo "Done!"
