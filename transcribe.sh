@@ -1,5 +1,4 @@
 #! /bin/bash
-
 JOB_ID=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 32 | head -n 1)
 
 aws transcribe start-transcription-job \
@@ -19,7 +18,8 @@ until grep COMPLETED job.json; do sleep 10; aws transcribe get-transcription-job
 TRANSCRIPT_URL=$(cat job.json | python3 -c 'import sys, json; print(json.load(sys.stdin)["TranscriptionJob"]["Transcript"]["TranscriptFileUri"])')
 rm job.json
 wget -O transcription.json "$TRANSCRIPT_URL"
-MESSAGE=$(cat transcription.json | python3 -c 'import sys, json; print(json.load(sys.stdin)["results"]["transcripts"][0]["transcript"])')
+MESSAGE_RAW=$(cat transcription.json | python3 -c 'import sys, json; print(json.load(sys.stdin)["results"]["transcripts"][0]["transcript"])')
 rm transcription.json
+MESSAGE=${MESSAGE_RAW//[[:blank:]]/}
 echo "Sending $MESSAGE ..." >> ~/webhook.log
-return.sh $MESSAGE
+./return.sh "$MESSAGE"
